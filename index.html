@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seif Haridi - Professor of Computer Systems</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&family=Source+Serif+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2c5282;
+            --accent: #c53030;
+            --text: #2d3748;
+            --text-light: #4a5568;
+            --bg: #f7fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 3rem 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255,255,255,0.3);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header-text h1 {
+            font-family: 'Source Serif Pro', Georgia, serif;
+            font-size: 2.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-text .title {
+            font-size: 1.25rem;
+            color: #faf089;
+            font-weight: 400;
+        }
+
+        .header-text .affiliation {
+            font-size: 1rem;
+            color: #faf089;
+            margin-top: 0.5rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        nav a {
+            display: block;
+            padding: 1rem 1.25rem;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.2s, background 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+            background: var(--bg);
+        }
+
+        /* Main content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-family: 'Source Serif Pro', Georgia, serif;
+            color: var(--primary);
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h3 {
+            color: var(--primary-light);
+            font-size: 1.25rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        h4 {
+            color: var(--text);
+            font-size: 1.1rem;
+            margin: 1rem 0 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        /* Highlight box */
+        .highlight {
+            background: linear-gradient(135deg, #ebf8ff 0%, #e6fffa 100%);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .highlight p {
+            margin: 0;
+            color: var(--text);
+        }
+
+        /* Award badge */
+        .award-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #faf089 0%, #f6e05e 100%);
+            color: #744210;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        /* Grid layouts */
+        .two-col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .three-col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .card h4 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card .meta {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--bg);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: #f8fafc;
+        }
+
+        /* Lists */
+        ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        /* Links */
+        a {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Blockquote */
+        blockquote {
+            background: var(--bg);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+
+        blockquote p {
+            margin-bottom: 0.5rem;
+        }
+
+        blockquote cite {
+            font-style: normal;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* Contact grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .stat {
+            padding: 1.5rem;
+            background: var(--bg);
+            border-radius: 8px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            margin-left: -5px;
+        }
+
+        .timeline-year {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* PhD students highlight */
+        .notable-student {
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+            border: 1px solid #feb2b2;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: #bee3f8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header-text h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                justify-content: center;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            nav, footer {
+                display: none;
+            }
+
+            section {
+                box-shadow: none;
+                border: 1px solid var(--border);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="profile.jpg" alt="Seif Haridi" class="profile-image">
+            <div class="header-text">
+                <h1>Seif Haridi</h1>
+                <p class="title">Chair-Professor of Computer Systems</p>
+                <p class="affiliation">KTH Royal Institute of Technology, Stockholm, Sweden</p>
+                <p class="affiliation">Senior Advisor, RISE Research Institutes of Sweden</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#systems">Systems</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#awards">Awards</a></li>
+            <li><a href="#book">Book</a></li>
+            <li><a href="#companies">Companies</a></li>
+            <li><a href="#students">PhD Students</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#teaching">Teaching</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- About Section -->
+        <section id="about">
+            <h2>About</h2>
+            <div class="two-col">
+                <div>
+                    <p>Seif Haridi is one of Sweden's most influential computer scientists, with a career spanning over 40 years in programming languages and distributed systems. His impact ranges from foundational work on logic programming (SICStus Prolog) through multiparadigm programming (Mozart/Oz) to modern big data systems (Apache Flink, Hops).</p>
+
+                    <div class="highlight">
+                        <p><strong>Fun fact:</strong> Seif Haridi was
+                        a member of the Egyptian national junior table tennis team.</p>
+                    </div>
+
+                    <h3>Current Positions</h3>
+                    <ul>
+                        <li><strong>Professor Emeritus</strong> at KTH Royal Institute of Technology</li>
+                        <li><strong>Chair-Professor of Computer Systems</strong> (parallel and distributed computing)</li>
+                        <li><strong>Head of Distributed Computing group (DC@KTH)</strong></li>
+                        <li><strong>Senior Advisor</strong> at RISE Research Institutes of Sweden</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Education</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <span class="timeline-year">1981</span>
+                            <p><strong>PhD in Computer Systems</strong><br>KTH Royal Institute of Technology, Sweden</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-year">1974</span>
+                            <p><strong>Engineering Degree</strong><br>Cairo University, Egypt<br>Electronics and Communication Systems</p>
+                        </div>
+                    </div>
+
+                    <h3>Research Areas</h3>
+                    <ul>
+                        <li>Parallel and Distributed Computing</li>
+                        <li>Programming Languages and Systems</li>
+                        <li>Cloud Computing and Big Data</li>
+                        <li>Stream Processing</li>
+                        <li>Distributed Algorithms</li>
+                        <li>Fault Tolerance</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section>
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-number">250+</div>
+                    <div class="stat-label">Publications</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">12,800+</div>
+                    <div class="stat-label">Citations</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">42 </div>
+                    <div class="stat-label">h-index</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">PhD Students</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">40+</div>
+                    <div class="stat-label">Years of Research</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Systems Section -->
+        <section id="systems">
+            <h2>Systems</h2>
+            <p>Seif Haridi has co-designed and contributed to numerous influential systems spanning programming languages, distributed computing, and big data processing.</p>
+
+            <h3>Big Data and Cloud Systems</h3>
+            <div class="two-col">
+                <div class="card">
+                    <h4>Apache Flink <span class="award-badge">SIGMOD 2023</span></h4>
+                    <p>Apache Flink is a platform for efficient, distributed, general-purpose data processing. It features powerful programming abstractions in Java and Scala, a high-performance runtime, and automatic program optimization. It has native support for iterations, incremental iterations, and programs consisting of large DAGs of operations.</p>
+                    <p>Flink Streaming is an extension of the core Flink API for high-throughput, low-latency data stream processing. The system can connect to and process data streams from many data sources like RabbitMQ, Flume, Twitter, ZeroMQ and also from any user defined data source.</p>
+                    <p class="meta"><strong>Recognition:</strong> 2023 ACM SIGMOD Systems Award</p>
+                </div>
+                <div class="card">
+                    <h4>HOPS / HopsFS <span class="award-badge">IEEE 2017</span></h4>
+                    <p>Hops is a next-generation distribution of Apache Hadoop, with a heavily adapted implementation of HDFS, called HopsFS. HopsFS is a new implementation of the Hadoop Filesystem (HDFS) based on Apache Hadoop 2.8, that supports multiple stateless NameNodes, where the metadata is stored in an in-memory distributed database (NDB).</p>
+                    <p>HopsFS enables NameNode metadata to be both customized and analyzed, because it can be easily accessed via SQL or the native API (NDB API).</p>
+                    <p class="meta"><strong>Recognition:</strong> IEEE Scale Prize 2017 - most scalable HDFS filesystem</p>
+                </div>
+            </div>
+
+            <div class="two-col" style="margin-top: 1.5rem;">
+                <div class="card">
+                    <h4>Scalaris <span class="award-badge">IEEE 2010</span></h4>
+                    <p>Scalaris is a scalable, transactional, distributed key-value store. It was the first NoSQL database that supported the ACID properties for multi-key transactions. It can be used for building scalable Web 2.0 services.</p>
+                    <p>Scalaris uses a structured overlay with a non-blocking Paxos commit protocol for transaction processing with strong consistency over replicas. Scalaris is implemented in Erlang.</p>
+                    <p class="meta"><strong>Recognition:</strong> IEEE Scalability Prize 2010</p>
+                </div>
+                <div class="card">
+                    <h4>CATS</h4>
+                    <p>Distributed key-value stores provide scalable, fault-tolerant, and self-organizing storage services, but fall short of guaranteeing linearizable consistency in partially synchronous, lossy, partitionable, and dynamic networks, when data is distributed and replicated automatically by the principle of consistent hashing.</p>
+                    <p>CATS is a distributed key-value store that uses consistent quorums to guarantee linearizability and partition tolerance in such adverse and dynamic network conditions. CATS is scalable, elastic, and self-organizing; key properties for modern cloud storage middleware.</p>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 1.5rem;">
+                <h4>Kompics</h4>
+                <p>Kompics is a message-passing component model for building distributed systems by putting together protocols programmed as event-driven components. Systems built with Kompics leverage multi-core machines out of the box and can be dynamically reconfigured to support hot software upgrades. A simulation framework enables deterministic debugging and reproducible performance evaluation of unmodified Kompics distributed systems.</p>
+            </div>
+
+            <h3>Programming Languages and Systems</h3>
+            <div class="two-col">
+                <div class="card">
+                    <h4>SICStus Prolog</h4>
+                    <p>SICStus is an ISO standard compliant Prolog development system. SICStus is built around a high performance Prolog engine that can use the full virtual memory space for 32 and 64 bit architectures alike. SICStus is efficient and robust for large amounts of data and large applications.</p>
+                    <p>The most well-known logic programming system in the world, developed at the Swedish Institute of Computer Science (SICS).</p>
+                    <p class="meta"><a href="https://sicstus.sics.se/">sicstus.sics.se</a></p>
+                </div>
+                <div class="card">
+                    <h4>Mozart Programming System</h4>
+                    <p>The Mozart Programming System combines ongoing research in programming language design and implementation, constraint logic programming, distributed computing, and human-computer interfaces. Mozart implements the Oz language and provides both expressive power and advanced functionality.</p>
+                    <p class="meta">Started 1991 as collaboration between DFKI (Germany) and SICS (Sweden)</p>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 1.5rem;">
+                <h4>AKL (Agents Kernel Language)</h4>
+                <p>AKL is a concurrent constraint programming language developed at the Swedish Institute of Computer Science (SICS). In AKL, computation is performed by agents interacting through stores of constraints. This notion accommodates multiple programming paradigms; in appropriate contexts, AKL agents may be thought of as processes, objects, functions, relations, or constraints.</p>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>Research Projects</h2>
+            <p>Over 25 years of leading and participating in major European and Swedish research projects on distributed systems, cloud computing, and big data.</p>
+
+            <h3>Recent Projects (2012-2022)</h3>
+
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <h4>Continuous Deep Analytics (CDA)</h4>
+                <p class="meta"><strong>SSF, 2018-2022</strong></p>
+                <p>Modern end-to-end data pipelines are highly complex and unoptimized. They combine code from different frontends (e.g., SQL, Beam, Keras), declared in different programming languages (e.g., Python, Scala) and execute across many backend runtimes (e.g., Spark, Flink, Tensorflow). Data and intermediate results take a long and slow path through excessive materialization, conversions down to different partially supported hardware accelerators. End-to-End guarantees are typically complex to reason due to the mismatch of processing semantics across runtimes.</p>
+                <p>The Continuous Deep Analytics (CDA) project aims to shape the next-generation software for scalable, data-driven applications and pipelines. Our work binds state of the art mechanisms in compiler and database technology together with hardware-accelerated machine learning and distributed stream processing.</p>
+            </div>
+
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <h4>ExtremeEarth</h4>
+                <p class="meta"><strong>H2020, 2019-2021</strong></p>
+                <p>ExtremeEarth concentrates on developing techniques and software that will enable the extraction of information and knowledge from big Copernicus data using deep learning techniques and extreme geospatial analytics, and the development of two use cases based on this information and knowledge and other relevant non-EO data sets.</p>
+                <p>ExtremeEarth will impact developments in the Integrated Ground Segment of Copernicus and the Sentinel Collaborative Ground Segment. ExtremeEarth tools and techniques can be used for extracting information and knowledge from big Copernicus data and making this information and knowledge available as linked data, allowing easy development of applications by developers with minimal or no knowledge of EO techniques, file formats, data access protocols etc.</p>
+            </div>
+
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <h4>A Big Data Analytics Framework for a Smart Society (BIDAF)</h4>
+                <p class="meta"><strong>KK-stiftelsen (KKS), 2014-2019</strong></p>
+                <p>The overall aim of the BIDAF project is to significantly further the research within massive data analysis, by means of machine learning, in response to the increasing demand of retrieving value from data in all of society. This will be done by creating a strong distributed research environment for big data analytics.</p>
+                <p>There are challenges on several levels that must be addressed: (i) platforms to store and process the data, (ii) machine learning algorithms to analyze the data, and (iii) high level tools to access the results.</p>
+            </div>
+
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <h4>StreamLine</h4>
+                <p class="meta"><strong>H2020, 2016-2018</strong></p>
+                <p>Streamline is funded by the European Union's Horizon 2020 research and innovation program to enhance the European data platform Apache Flink to handle both stream data and batch data in a unified way. The project includes both research and use cases to validate the results.</p>
+                <p>The project has the following objectives: (i) to research, design, and develop a massively scalable, robust, and efficient processing platform for data at rest and data in motion in a single system, (ii) to develop a high accuracy, massively scalable data stream-oriented machine learning library based on new algorithms and approximate data structures, (iii) to provide a unified interactive programming environment that is user-friendly and easy to deploy in the cloud, (iv) to implement a real-time contextualization engine, enabling analytical and predictive models to take real world context into account, and (v) to develop multi-faceted, effective dissemination of Streamline results to the research, academic, and international community.</p>
+            </div>
+
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <h4>E2E-Clouds</h4>
+                <p class="meta"><strong>SSF (Swedish Foundation for Strategic Research), 2012-2017</strong></p>
+                <p>E2E-Clouds was a five-year research project financed by the Swedish Foundation for Strategic Research. The goal of the project is to develop an End-to-End information-centric Cloud (E2E-Cloud) for data intensive services and applications.</p>
+                <p>The E2E-Clouds is a distributed and federated cloud infrastructure that meets the challenge of scale by aggregating, provisioning and managing computational, storage and networking resources from multiple centers and providers. Like some current data-center clouds it manages computation and storage in an integrated fashion for efficiency, but adds wide-scale distribution.</p>
+            </div>
+
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <h4>iSocial</h4>
+                <p class="meta"><strong>FP7 Marie Curie ITN, 2013-2017</strong></p>
+                <p>The rapid proliferation of Online Social Networking (OSN) sites is expected to reshape the Internet's structure, design, and utility. We believe that OSNs create a potentially transformational change in consumer behavior and will bring a far-reaching impact on traditional industries of content, media, and communications.</p>
+                <p>The iSocial ITN aspires to bring a transformational change in OSN provision, pushing the state-of-the-art from centralized services towards totally decentralized systems that will pervade our environment and seamlessly integrate with future Internet and media services. OSN decentralization can address privacy considerations and improve service scalability, performance and fault-tolerance in the presence of an expanding base of users and applications.</p>
+                <p>The main objective of iSocial is to provide world class training for a next generation of researchers, computer scientists, and Web engineers, emphasizing on a strong combination of advanced understanding in both theoretical and experimental approaches, methodologies and tools that are required to develop DOSN platforms.</p>
+            </div>
+
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <h4>A Community Networking Cloud in a Box (CLOMMUNITY)</h4>
+                <p class="meta"><strong>FP7 EU-project, 2013-2015</strong></p>
+                <p>Community networking is an emerging model for the Future Internet across Europe and beyond where communities of citizens can build, operate and own open IP-based networks, a key infrastructure for individual and collective digital participation.</p>
+                <p>The CLOMMUNITY project aims at addressing the obstacles for communities of citizens in bootstrapping, running and expanding community-owned networks that provide community services organised as community clouds. That requires solving specific research challenges: self-managing and scalable (decentralized) infrastructure services for the management and aggregation of a large number of widespread low-cost unreliable networking, storage and home computing resources; distributed platform services to support and facilitate the design and operation of elastic, resilient and scalable service overlays.</p>
+            </div>
+
+            <h3>Historical Projects (2000-2010)</h3>
+
+            <div class="two-col">
+                <div class="card">
+                    <h4>Peer-to-Peer Live Streaming (PeerTV)</h4>
+                    <p class="meta"><strong>Vinnova, 2007-2010</strong></p>
+                    <p>The PeerTV project developed, deployed and validated peer-to-peer media streaming platforms addressing three key requirements: (i) efficient utilization of upload bandwidth at peers to reduce centrally provisioned bandwidth, (ii) reducing playback latency and increasing playback continuity through novel topologies, and (iii) minimizing network traffic cost for ISPs through AS-aware infrastructure.</p>
+                </div>
+                <div class="card">
+                    <h4>SELFMAN</h4>
+                    <p class="meta"><strong>FP6 EU-project, 2006-2009</strong></p>
+                    <p>The goal of SELFMAN is to make large-scale distributed applications that are self managing, by combining component models and structured overlay networks. Self management along four axes: self configuration, self healing, self tuning, and self protection.</p>
+                </div>
+            </div>
+
+            <div class="two-col" style="margin-top: 1.5rem;">
+                <div class="card">
+                    <h4>PEPITO</h4>
+                    <p class="meta"><strong>FP5 EU-project, 2002-2004</strong></p>
+                    <p>Peer-To-Peer-Implementation-and-TheOry. Traditional centralised system architectures are ever more inadequate. The PEPITO project investigated completely decentralised models of P2P computing, both how to build them robustly and what can be built.</p>
+                </div>
+                <div class="card">
+                    <h4>Information Cities (ICities)</h4>
+                    <p class="meta"><strong>EU-project, 2000-2003</strong></p>
+                    <p>The Information Cities project models aggregation and segregation patterns in a virtual world of infohabitants (humans, virtual firms, on-line communities and software agents). The objective is to capture aggregate patterns of virtual organisation emerging from interaction over information infrastructure.</p>
+                </div>
+            </div>
+
+            <div class="two-col" style="margin-top: 1.5rem;">
+                <div class="card">
+                    <h4>EVERGROW</h4>
+                    <p class="meta"><strong>European Research Project on the Future Internet</strong></p>
+                    <p>The goal of EVERGROW is to build the science-based foundations for the global information networks of the future. The demands on the future Internet will be high, and a number of today's highly manual processes must be automated, such as network management, network provisioning and network repair on all levels.</p>
+                </div>
+                <div class="card">
+                    <h4>CoreGRID</h4>
+                    <p class="meta"><strong>EU Network of Excellence</strong></p>
+                    <p>The CoreGRID Network of Excellence aims at strengthening and advancing scientific and technological excellence in Grid and Peer-to-Peer technologies. The Network brings together 161 permanent researchers and 164 PhD students from forty-one institutions in six complementary research areas to develop next generation Grid middleware.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Awards Section -->
+        <section id="awards">
+            <h2>Awards and Honors</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>Award</th>
+                        <th>Organization</th>
+                        <th>For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>2023</strong></td>
+                        <td><strong>ACM SIGMOD Systems Award</strong></td>
+                        <td>ACM SIGMOD</td>
+                        <td>Apache Flink - expanding stream data-processing</td>
+                    </tr>
+                    <tr>
+                        <td>2019</td>
+                        <td>European Data Science Technology Innovation</td>
+                        <td>EIT Digital</td>
+                        <td>LogicalClocks and Hopsworks platform</td>
+                    </tr>
+                    <tr>
+                        <td>2017</td>
+                        <td>IEEE Scale Prize</td>
+                        <td>IEEE</td>
+                        <td>HopsFS - most scalable HDFS filesystem</td>
+                    </tr>
+                    <tr>
+                        <td>2010</td>
+                        <td>IEEE Scalability Prize</td>
+                        <td>IEEE</td>
+                        <td>Scalaris - transactional key-value store</td>
+                    </tr>
+                    <tr>
+                        <td>1991</td>
+                        <td>Xerox Chester Carlson Research Prize</td>
+                        <td>Royal Swedish Academy (IVA)</td>
+                        <td>Logic programming and parallel processors</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Book Section -->
+        <section id="book">
+            <h2>Book</h2>
+            <div class="two-col">
+                <div>
+                    <h3>Concepts, Techniques, and Models of Computer Programming</h3>
+                    <p><strong>Authors:</strong> Peter Van Roy and Seif Haridi<br>
+                    <strong>Publisher:</strong> MIT Press, 2004<br>
+                    <strong>Pages:</strong> 936<br>
+                    <strong>ISBN:</strong> 978-0262220699</p>
+
+                    <p>This comprehensive textbook presents computer programming as a unified discipline. It teaches all major programming paradigms in a uniform framework that shows their deep relationships.</p>
+
+                    <h4>Paradigms Covered</h4>
+                    <ul>
+                        <li>Declarative programming</li>
+                        <li>Message-passing concurrency</li>
+                        <li>Object-oriented programming</li>
+                        <li>Shared-state concurrency</li>
+                        <li>Constraint programming</li>
+                        <li>Distributed programming</li>
+                    </ul>
+                </div>
+                <div>
+                    <blockquote>
+                        <p>"In almost 20 years since Abelson and Sussman revolutionized the teaching of computer science with their Structure and Interpretation of Computer Programs, this is the first book I've seen that focuses on big ideas and multiple paradigms, as SICP does, but chooses a very different core model (declarative programming)."</p>
+                        <cite>- Brian Harvey, UC Berkeley</cite>
+                    </blockquote>
+                    <p>The book uses the Mozart Programming System (implementing the Oz language) as its main vehicle for teaching and experimentation.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Companies Section -->
+        <section id="companies">
+            <h2>Companies Founded</h2>
+            <div class="three-col">
+                <div class="card">
+                    <h4>LogicalClocks / Hopsworks</h4>
+                    <p><strong>Role:</strong> Co-founder, Chief Scientist<br>
+                    <strong>Founded:</strong> 2016</p>
+                    <p>Enterprise data platform for scale-out data science and AI. Won European Data Science Technology Innovation 2019.</p>
+                    <p class="meta"><a href="https://www.hopsworks.ai">hopsworks.ai</a></p>
+                </div>
+                <div class="card">
+                    <h4>HiveStreaming</h4>
+                    <p><strong>Role:</strong> Co-founder</p>
+                    <p>Enterprise Content Delivery Network (eCDN) for internal live video events using P2P-based video distribution.</p>
+                    <p class="meta"><a href="https://www.hivestreaming.com">hivestreaming.com</a></p>
+                </div>
+                <div class="card">
+                    <h4>Peerialism</h4>
+                    <p><strong>Role:</strong> Advisor</p>
+                    <p>P2P data transfer system. Named one of Sweden's 33 hottest companies (2009). Acquired for 100M SEK.</p>
+                    <p class="meta">Co-founder: Ali Ghodsi (now Databricks CEO)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PhD Students Section -->
+        <section id="students">
+            <h2>PhD Students</h2>
+
+            <h3>Notable Alumni</h3>
+            <div class="three-col">
+                <div class="card notable-student">
+                    <h4>Ali Ghodsi</h4>
+                    <p><strong>PhD 2006:</strong> Distributed k-ary Systems</p>
+                    <p><strong>Current:</strong> CEO of Databricks (valued at $100B+)</p>
+                </div>
+                <div class="card notable-student">
+                    <h4>Joe Armstrong</h4>
+                    <p><strong>PhD 2003:</strong> Reliable Distributed Systems</p>
+                    <p><strong>Legacy:</strong> Creator of Erlang (powers WhatsApp, Ericsson)</p>
+                </div>
+                <div class="card notable-student">
+                    <h4>Paris Carbone</h4>
+                    <p><strong>PhD 2018:</strong> Data Stream Processing</p>
+                    <p><strong>Current:</strong> Apache Flink core contributor</p>
+                </div>
+            </div>
+
+            <h3>Complete List (25+ PhD Students)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Year</th>
+                        <th>Thesis Topic</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Paris Carbone</td><td>2018</td><td>Scalable and Reliable Data Stream Processing</td></tr>
+                    <tr><td>Fatemeh Rahimian</td><td>2014</td><td>Gossip-Based Algorithms for Information Dissemination</td></tr>
+                    <tr><td>Raul Jimenez</td><td>2013</td><td>Distributed Peer Discovery in P2P Systems</td></tr>
+                    <tr><td>Roberto Roverso</td><td>2013</td><td>Adaptive HTTP-live Streaming on P2P Overlays</td></tr>
+                    <tr><td>Amir H. Payberah</td><td>2013</td><td>Live Streaming in P2P and Hybrid Environments</td></tr>
+                    <tr><td>Cosmin Arad</td><td>2013</td><td>Reconfigurable Distributed Systems</td></tr>
+                    <tr><td>Tallat Shafaat</td><td>2013</td><td>Partition Tolerance in Overlay Networks</td></tr>
+                    <tr><td>Ali Ghodsi</td><td>2006</td><td>Distributed k-ary System (DHT Algorithms)</td></tr>
+                    <tr><td>Erik Klintskog</td><td>2005</td><td>Distribution Support for Programming Systems</td></tr>
+                    <tr><td>Sameh El-Ansary</td><td>2005</td><td>Structured Peer-To-Peer Systems</td></tr>
+                    <tr><td>Per Brand</td><td>2005</td><td>Distributed Programming Systems (Mozart)</td></tr>
+                    <tr><td>Joe Armstrong</td><td>2003</td><td>Reliable Distributed Systems (Erlang)</td></tr>
+                    <tr><td>Ashley Saulsbury</td><td>1999</td><td>Latency in Distributed Memory Systems</td></tr>
+                    <tr><td>Johan Montelius</td><td>1997</td><td>Fine-grain Parallelism</td></tr>
+                    <tr><td>Sverker Janson</td><td>1994</td><td>AKL Multiparadigm Programming Language</td></tr>
+                    <tr><td>Erik Hagersten</td><td>1992</td><td>Cache-Only Memory Architectures</td></tr>
+                    <tr><td>Mats Carlsson</td><td>1990</td><td>OR-parallel Prolog Engine</td></tr>
+                    <tr><td>Dan Sahlin</td><td>1991</td><td>Partial Evaluator for Prolog</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications">
+            <h2>Selected Publications</h2>
+            <div class="two-col">
+                <div>
+                    <h3>Seminal Works</h3>
+                    <ul>
+                        <li><strong>"Concepts, Techniques, and Models of Computer Programming"</strong> (2004) - MIT Press, 936 pages</li>
+                        <li><strong>"A history of the Oz multiparadigm language"</strong> (2020) - HOPL IV, ACM</li>
+                        <li><strong>"Apache Flink: Stream and Batch Processing in a Single Engine"</strong> (2015) - IEEE Data Engineering Bulletin</li>
+                        <li><strong>"State Management in Apache Flink"</strong> (2017) - VLDB Endowment</li>
+                        <li><strong>"HopsFS: Scaling Hierarchical File System Metadata"</strong> (2017) - FAST</li>
+                        <li><strong>"Efficient Logic Variables for Distributed Computing"</strong> (1999) - ACM TOPLAS</li>
+                        <li><strong>"Mobile Objects in Distributed Oz"</strong> (1997) - ACM TOPLAS</li>
+                        <li><strong>"DDM - A Cache-Only Memory Architecture"</strong> (1992) - IEEE Computer</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Academic Profiles</h3>
+                    <ul>
+                        <li><a href="https://scholar.google.com/citations?user=p4TZRwMAAAAJ">Google Scholar</a></li>
+                        <li><a href="https://dblp.org/pid/h/SeifHaridi.html">DBLP</a></li>
+                        <li><a href="https://www.researchgate.net/profile/Seif-Haridi">ResearchGate</a></li>
+                        <li><a href="https://www.semanticscholar.org/author/Seif-Haridi/1694607">Semantic Scholar</a></li>
+                    </ul>
+
+                    <h3>Invited Talks</h3>
+                    <ul>
+                        <li><strong>HOPL IV 2021:</strong> "The History of Oz: A Multiparadigm Programming Language"</li>
+                        <li><strong>Boston University 2023:</strong> Distinguished CS Colloquium</li>
+                        <li><strong>University of Chicago:</strong> "Research in Continuous Deep Analytics"</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Teaching Section -->
+        <section id="teaching">
+            <h2>Teaching</h2>
+            <p>For more than ten years, Seif Haridi has been teaching popular courses on Distributed Algorithms and Peer-to-Peer Computing at KTH.</p>
+
+            <div class="two-col">
+                <div>
+                    <h3>Online Courses (edX)</h3>
+                    <ul>
+                        <li><a href="https://www.edx.org/course/reliable-distributed-algorithms-part-1">Reliable Distributed Algorithms (Part 1)</a></li>
+                        <li><a href="https://www.edx.org/course/reliable-distributed-algorithms-part-2">Reliable Distributed Algorithms (Part 2)</a></li>
+                    </ul>
+
+                    <h3>YouTube</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/results?search_query=seif+haridi+distributed+algorithms">Distributed Algorithms Lectures</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>KTH Courses</h3>
+                    <ul>
+                        <li><strong>ID2220:</strong> Advanced Topics in Distributed Systems</li>
+                        <li><strong>ID2203:</strong> Distributed Systems, Advanced Course</li>
+                        <li><strong>ID2210:</strong> Distributed Computing, Peer-to-Peer and GRIDS</li>
+                        <li><strong>2G1126:</strong> Distributed Computer Systems (historical)</li>
+                        <li><strong>2G1512:</strong> Computer Science II (historical)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-icon">@</div>
+                    <div>
+                        <strong>Email</strong><br>
+                        <a href="mailto:haridi@kth.se">haridi@kth.se</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">@</div>
+                    <div>
+                        <strong>RISE Email</strong><br>
+                        <a href="mailto:seif.haridi@ri.se">seif.haridi@ri.se</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">T</div>
+                    <div>
+                        <strong>Phone</strong><br>
+                        +46 8 790 41 22
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">O</div>
+                    <div>
+                        <strong>Office</strong><br>
+                        Electrum 229, Kista, Sweden
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Web Profiles</h3>
+            <ul>
+                <li><a href="https://www.kth.se/profile/haridi">KTH Profile</a></li>
+                <li><a href="https://people.kth.se/~haridi">Personal Webpage</a></li>
+                <li><a href="https://www.ri.se/en/person/seif-haridi">RISE Profile</a></li>
+                <li><a href="https://www.edx.org/bio/seif-haridi">edX Profile</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p><strong>Seif Haridi</strong> - Professor of Computer Systems</p>
+        <p>KTH Royal Institute of Technology | RISE Research Institutes of Sweden</p>
+        <p style="margin-top: 1rem; opacity: 0.7;">Last updated: December 2025</p>
+    </footer>
+</body>
+</html>
